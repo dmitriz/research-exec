@@ -8,8 +8,8 @@
 
 - **Last Updated:** June 3, 2025
 - **Total Projects:** 70 repositories
-- **Research Completed:** 36 projects (51.4% complete) 
-- **Research Needed:** 34 projects
+- **Research Completed:** 42 projects (60.0% complete) 
+- **Research Needed:** 28 projects
 
 ---
 
@@ -83,7 +83,11 @@
 - calm-negotiator ❌ NON-EXISTENT (404 error)
 - smart-collaboration ❌ NON-EXISTENT (404 error)
 - collab-frame ✅ COMPLETED (COLLAB_FRAME_RESEARCH.md, Jun 3, 2025)
-- cloudflare-app 🔄 NEXT
+- cloudflare-app ✅ COMPLETED (CLOUDFLARE_APP_RESEARCH.md, Jun 3, 2025)
+- void ✅ COMPLETED (VOID_RESEARCH.md, Jun 3, 2025)
+- testing-api ✅ COMPLETED (TESTING_API_RESEARCH.md, Jun 3, 2025)
+- android-dictation ✅ COMPLETED (ANDROID_DICTATION_RESEARCH.md, Jun 3, 2025)
+- llm-integration ✅ COMPLETED (LLM_INTEGRATION_RESEARCH.md, Jun 3, 2025)
 
 ## 📝 Pending Research
 
