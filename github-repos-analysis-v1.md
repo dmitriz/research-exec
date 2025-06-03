@@ -396,9 +396,9 @@ Forked repositories indicate active engagement with the broader AI/automation co
 - [exchange-schema](https://github.com/username/exchange-schema) - API schemas
 
 ### AI Development Tools
-- [ai-instructions](https://github.com/username/ai-instructions) - Instruction patterns
+- [ai-instructions](https://github.com/username/ai-instructions) - Instruction patterns **[RESEARCHED]**
 - [guardrails-info](https://github.com/username/guardrails-info) - AI safety research
-- [llm-selection](https://github.com/username/llm-selection) - Model routing
+- [llm-selection](https://github.com/username/llm-selection) - Model routing **[RESEARCHED]**
 - [arcade-ai](https://github.com/username/arcade-ai) [FORKED] - Arcade SDK
 - [graphiti](https://github.com/username/graphiti) [FORKED] - Knowledge graphs
 - [ottomator-agents](https://github.com/username/ottomator-agents) - Agent platform
