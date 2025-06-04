@@ -1,67 +1,29 @@
 {
   "name": "research-exec",
   "version": "1.0.0",
-  "description": "Advanced AI research execution and automation framework for systematic project orchestration",
-  "main": "dist/index.js",
-  "type": "module",
+  "description": "Documentation & Strategy Hub for GitHub Portfolio Analysis",
+  "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "prettier --write src/**/*.ts",
-    "agent:execute": "tsx src/agents/copilot-executor.ts",
-    "research:gemini": "tsx src/research/gemini-executor.ts",
-    "monitor:performance": "tsx src/monitoring/performance-tracker.ts",
-    "orchestrate:parallel": "tsx src/orchestration/parallel-manager.ts"
+    "data:collect": "gh repo list --json name,description,visibility,isPrivate,updatedAt,primaryLanguage --limit 200 > data/raw-repos.json",
+    "data:analyze": "node utils/analyze-data.js",
+    "analyze": "npm run data:collect && npm run data:analyze",
+    "setup": "npm run analyze",
+    "clean": "rm -rf data/raw-repos.json data/repos-analysis.md"
   },
   "keywords": [
-    "ai-research",
-    "automation",
-    "agent-orchestration",
-    "parallel-execution",
-    "research-framework",
-    "github-copilot",
-    "gemini-pro",
-    "performance-optimization"
+    "documentation",
+    "strategy",
+    "portfolio-analysis", 
+    "github",
+    "methodology",
+    "project-management"
   ],
-  "author": "Dmitri",
-  "license": "MIT",
-  "dependencies": {
-    "@octokit/rest": "^20.0.2",
-    "@google/generative-ai": "^0.7.1",
-    "axios": "^1.6.2",
-    "bull": "^4.12.2",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "ioredis": "^5.3.2",
-    "winston": "^3.11.0",
-    "yaml": "^2.3.4",
-    "node-cron": "^3.0.3",
-    "commander": "^11.1.0",
-    "chalk": "^5.3.0",
-    "ora": "^7.0.1",
-    "inquirer": "^9.2.12"
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "@types/express": "^4.17.21",
-    "@types/jest": "^29.5.8",
-    "@types/inquirer": "^9.0.7",
-    "@typescript-eslint/eslint-plugin": "^6.13.1",
-    "@typescript-eslint/parser": "^6.13.1",
-    "eslint": "^8.54.0",
-    "jest": "^29.7.0",
-    "prettier": "^3.1.0",
-    "ts-jest": "^29.1.1",
-    "tsx": "^4.6.0",
-    "typescript": "^5.3.2"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "markdown-link-check": "^3.11.2"
   }
 }
