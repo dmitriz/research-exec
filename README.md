@@ -2,7 +2,36 @@
 
 **Comprehensive research methodology and strategic analysis framework for GitHub repository management and project documentation**
 
+> **🔒 Privacy First**: This framework protects your personal data. See [Setup & Privacy](#setup--privacy) for secure configuration.
+>
 > **Getting Started**: See [SETUP.md](SETUP.md) for quick configuration with your own GitHub username
+
+## Setup & Privacy
+
+### Secure Configuration
+This framework is designed with **privacy by default**:
+
+1. **Personal data stays local**: Your GitHub username and repository data never get committed
+2. **Example data provided**: Anonymized sample data for testing and documentation
+3. **Gitignored sensitive files**: `config.js`, `data/`, and generated analysis files are automatically excluded
+
+### Quick Setup
+```bash
+# 1. Copy the example configuration
+cp config.example.js config.js
+
+# 2. Edit config.js with your GitHub username
+# Replace 'your-github-username' with your actual username
+
+# 3. Install dependencies and collect your data
+npm install
+npm run setup
+
+# 4. Generate your analysis (stored locally only)
+npm run data:analyze
+```
+
+All personal data remains on your machine and is never committed to the repository.
 
 ## Research Infrastructure & Scope
 

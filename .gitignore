@@ -8,8 +8,15 @@ build/
 .env
 .env.*
 
-# Data folder - contains generated analysis and raw repository data
+# PRIVACY & SECURITY: Personal configuration and data
+config.js
 data/
+analysis/
+
+# Generated files with personal data (use config.example.js instead)
+portfolio-stats-generated.md
+repos-analysis.md
+gh-repos.md
 
 # Legacy generated files (kept for backward compatibility)
 portfolio-stats-generated.md

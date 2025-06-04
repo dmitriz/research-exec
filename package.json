@@ -6,8 +6,9 @@
   "scripts": {
     "data:collect": "gh repo list --json name,description,visibility,isPrivate,updatedAt,primaryLanguage --limit 200 > data/raw-repos.json",
     "data:analyze": "node utils/analyze-data.js",
+    "data:process": "node utils/process-data.js",
     "analyze": "npm run data:collect && npm run data:analyze",
-    "setup": "npm run analyze",
+    "setup": "node utils/setup.js",
     "clean": "rm -rf data/raw-repos.json data/repos-analysis.md"
   },
   "keywords": [
