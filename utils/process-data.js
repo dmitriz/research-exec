@@ -11,7 +11,7 @@
  * - SCOPE: Public repositories ONLY (excludes private repos)
  * - PURPOSE: Statistical computation and basic reporting
  * - OUTPUT: Console output with hash-linked markdown sections
- * - DATA SOURCE: Legacy 'gh-repo-data.json' file format
+ * - DATA SOURCE: Uses 'raw-repos.json' or 'example-repos.json' (fallback)
  * 
  * Features:
  * - Filters out private repositories for transparency

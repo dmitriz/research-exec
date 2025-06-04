@@ -139,7 +139,7 @@ try {
   console.log(`${colors.yellow}Number of repositories collected: ${colors.bright}${JSON.parse(rawRepos).length}${colors.reset}`);
 } catch (error) {
   console.error(`${colors.red}Failed to collect repository data:${colors.reset}`, error.message);
-  console.log(`${colors.yellow}Using example data for testing...${colors.reset}`);
+console.log(`${colors.yellow}Using example data for testing...${colors.reset}`);
 }
 
 // Step 7: Update .gitignore

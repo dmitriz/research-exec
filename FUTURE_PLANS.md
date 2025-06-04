@@ -87,7 +87,7 @@ Areas where community contributions would be most valuable:
 
 To contribute to any of these future plans, please:
 
-1. Check the [Issues](https://github.com/your-github-username/research-exec/issues) for specific tasks related to these items
+Check the [Issues](https://github.com/actual-username/research-exec/issues) for specific tasks related to these items
 2. Submit a pull request with your implementation
 3. Provide documentation for any new features or changes
 
