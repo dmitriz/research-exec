@@ -5,6 +5,8 @@
 > **🔒 Privacy First**: This framework protects your personal data. See [Setup & Privacy](#setup--privacy) for secure configuration.
 >
 > **Getting Started**: See [SETUP.md](SETUP.md) for quick configuration with your own GitHub username
+> 
+> **Maintainers**: Run `npm run check-links` to validate documentation links or `npm run check-all-links` for comprehensive validation
 
 ## Setup & Privacy
 
@@ -42,7 +44,7 @@ All personal data remains on your machine and is never committed to the reposito
 **[Strategic Classification](classification.md)**: Purpose-based categorization with strategic value assessment
 
 ### Research Methodology Framework
-**[Universal Repository Analysis](methodology/repository-analysis.md)** - Multi-dimensional framework applicable to any repository collection  
+**[Universal Repository Analysis](methodology/portfolio-analysis.md)** - Multi-dimensional framework applicable to any repository collection  
 • **Quantitative Metrics**: Repository statistics, technology distribution, activity patterns  
 • **Qualitative Categorization**: Purpose-based analysis, strategic value assessment  
 • **Pattern Recognition**: Development clusters, integration opportunities, gap identification  

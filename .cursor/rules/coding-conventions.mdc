@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Coding Conventions
+
+## General Guidelines
+- Use meaningful variable and function names that clearly describe their purpose
+- Keep functions small and focused on a single responsibility
+- Comment complex logic to explain the "why" not the "what"
+- Follow the DRY (Don't Repeat Yourself) principle
+
+## JavaScript
+- Use snake_case for variables and functions
+- Avoid classes and Typescript
+- Use UPPER_SNAKE_CASE for constants
+- Prefer const over let, avoid var
+- Use arrow functions for anonymous functions
+- Use template literals instead of string concatenation
+
+## File Organization
+- Group related files in directories
+- Use index files to export components
+- Keep test files close to the code they test
+
