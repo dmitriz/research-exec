@@ -10,17 +10,58 @@
  * - Filters public repositories and calculates language distributions
  * - Generates comprehensive analysis reports with automated transparency
  * 
+ * TypeScript Integration:
+ * This module can leverage the TypeScript interfaces defined in src/types/execution.ts
+ * which provide type definitions for:
+ *   - ExecutionConfig: Configuration parameters for execution framework
+ *   - ProjectConfig: Project-specific configuration settings
+ *   - TaskConfig: Task execution parameters and requirements
+ *   - SessionResult: Analysis session results and statistics
+ * 
+ * Future Implementation:
+ * - Convert this module to TypeScript for better type safety
+ * - Use the interfaces for proper type checking and validation
+ * - Add runtime type validation for configuration objects
+ * 
+ * Privacy Features:
+ * - Respects config.js settings for including/excluding private repositories
+ * - Can anonymize repository names based on configuration
+ * - Excludes sensitive data from generated reports
+ * 
  * Usage: node utils/analyze-data.js
- * Output: Analysis results and markdown documentation
+ * Output: Analysis results and markdown documentation (data/repos-analysis.md)
+ * 
+ * @module analyze-data
+ * @author GitHub Repository Analysis Framework
+ * @see src/types/execution.ts for TypeScript interfaces
  */
 
 const fs = require('fs');
 const path = require('path');
-const config = require('../config');
 
-// Load the JSON data
-const rawDataPath = path.join(config.DATA.DATA_FOLDER, config.DATA.RAW_REPOS);
-const rawData = JSON.parse(fs.readFileSync(rawDataPath, 'utf8'));
+// Load configuration with fallback to example config for demonstration
+let config;
+try {
+    config = require('../config');
+} catch (error) {
+    console.log('⚠️  Personal config.js not found. Using example configuration.');
+    console.log('💡 Copy config.example.js to config.js and add your GitHub username for personal analysis.\n');
+    config = require('../config.example');
+}
+
+// Load the JSON data with fallback to example data
+let rawDataPath;
+let rawData;
+
+try {
+    rawDataPath = path.join(config.DATA.DATA_FOLDER, config.DATA.RAW_REPOS);
+    rawData = JSON.parse(fs.readFileSync(rawDataPath, 'utf8'));
+} catch (error) {
+    console.log('⚠️  Personal repository data not found. Using example data for demonstration.');
+    console.log('💡 Run "npm run setup" to collect your personal repository data.\n');
+    rawDataPath = path.join(config.DATA.DATA_FOLDER, config.DATA.EXAMPLE_DATA);
+    rawData = JSON.parse(fs.readFileSync(rawDataPath, 'utf8'));
+}
 
 console.log('GitHub Repository Analysis');
 console.log('==========================\n');

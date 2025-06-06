@@ -6,9 +6,12 @@
   "scripts": {
     "data:collect": "gh repo list --json name,description,visibility,isPrivate,updatedAt,primaryLanguage --limit 200 > data/raw-repos.json",
     "data:analyze": "node utils/analyze-data.js",
+    "data:process": "node utils/process-data.js",
     "analyze": "npm run data:collect && npm run data:analyze",
-    "setup": "npm run analyze",
-    "clean": "rm -rf data/raw-repos.json data/repos-analysis.md"
+    "setup": "node utils/setup.js",
+    "clean": "rm -rf data/raw-repos.json data/repos-analysis.md",
+    "check-links": "npx markdown-link-check --quiet --json README.md | node -e \"const result = JSON.parse(require('fs').readFileSync(0, 'utf-8')); const dead = result.filter(l => l.status === 'dead'); console.log(dead.length ? '❌ ' + dead.length + ' broken links found' : '✅ All links valid'); dead.forEach(l => console.log('   - ' + l.link));\"",
+    "check-all-links": "node utils/check-links.js"
   },
   "keywords": [
     "documentation",

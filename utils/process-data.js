@@ -1,20 +1,48 @@
 #!/usr/bin/env node
 
 /**
- * GitHub Repository Data Processor
+ * GitHub Repository Data Processor (PUBLIC REPOS ONLY)
  * 
- * Processes raw GitHub CLI JSON data to generate accurate statistics
- * for PUBLIC repositories only, with proper hash-linked references.
+ * This utility processes raw GitHub CLI JSON data to generate focused statistics
+ * specifically for PUBLIC repositories only. This is distinct from analyze-data.js
+ * which processes ALL repositories (public + private).
+ * 
+ * Key Differences from analyze-data.js:
+ * - SCOPE: Public repositories ONLY (excludes private repos)
+ * - PURPOSE: Statistical computation and basic reporting
+ * - OUTPUT: Console output with hash-linked markdown sections
+ * - DATA SOURCE: Uses 'raw-repos.json' or 'example-repos.json' (fallback)
+ * 
+ * Features:
+ * - Filters out private repositories for transparency
+ * - Generates basic statistics (counts, languages, activity)
+ * - Creates hash-linked markdown sections for navigation
+ * - Reports filtering actions (total → public count)
  * 
  * Usage: npm run data:process
+ * Output: Console-based statistical analysis
+ * 
+ * @author GitHub Repository Analysis Pipeline
+ * @version 1.0.0
+ * @since Project initialization
  */
 
 const fs = require('fs');
 const path = require('path');
 
-// Load raw GitHub data
-const dataPath = path.join(__dirname, '..', 'data', 'gh-repo-data.json');
-const rawData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+// Load raw GitHub data from current data format with privacy fallback
+let dataPath;
+let rawData;
+
+try {
+    dataPath = path.join(__dirname, '..', 'data', 'raw-repos.json');
+    rawData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+} catch (error) {
+    console.log('⚠️  Personal repository data not found. Using example data.');
+    console.log('💡 Run "npm run setup" to collect your personal repository data.\n');
+    dataPath = path.join(__dirname, '..', 'data', 'example-repos.json');
+    rawData = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+}
 
 console.log('📊 GitHub Repository Data Analysis (PUBLIC REPOS ONLY)');
 console.log('=====================================================\n');

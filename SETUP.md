@@ -2,6 +2,10 @@
 
 This repository provides a comprehensive framework for analyzing GitHub repository collections. Follow these steps to set it up for your own repositories.
 
+## 🔒 Privacy First Setup
+
+This framework is designed with privacy in mind. Your personal GitHub data stays on your local machine and is never committed to Git.
+
 ## Quick Setup
 
 1. **Clone the repository**
@@ -15,8 +19,23 @@ This repository provides a comprehensive framework for analyzing GitHub reposito
    npm install
    ```
 
-3. **Configure your GitHub username**
-   Edit `config.js` and update the `GITHUB_USERNAME` field:
+3. **Run the automated setup**
+   ```bash
+   npm run setup
+   ```
+   This will guide you through the entire setup process, including:
+   - Creating your configuration file
+   - Verifying GitHub CLI installation
+   - Collecting your repository data
+   - Setting up privacy protections
+
+4. **Configure your GitHub username**
+   If not already done during setup, copy the example config and edit it:
+   ```bash
+   cp config.example.js config.js
+   ```
+   
+   Then update the `GITHUB_USERNAME` field:
    ```javascript
    module.exports = {
        GITHUB_USERNAME: 'YOUR_GITHUB_USERNAME', // Replace with your username
