@@ -1,4 +1,4 @@
-// Script to check all markdown files for broken links in non-interactive mode
+// Script to check all markdown files for broken links with clean output
 const { execSync } = require('child_process');
 const { readdirSync, statSync, writeFileSync } = require('fs');
 const { join } = require('path');
@@ -7,7 +7,7 @@ const { join } = require('path');
 const getAllMdFiles = dir => 
   readdirSync(dir).reduce((files, file) => {
     const name = join(dir, file);
-    if (statSync(name).isDirectory()) {
+    if (statSync(name).isDirectory() && !file.startsWith('.') && file !== 'node_modules') {
       return [...files, ...getAllMdFiles(name)];
     } else {
       return file.endsWith('.md') ? [...files, name] : files;
@@ -16,58 +16,62 @@ const getAllMdFiles = dir =>
 
 // Check all markdown files
 const mdFiles = getAllMdFiles('.');
-let errorCount = 0;
+let totalErrors = 0;
 const brokenLinks = [];
 
-console.log(`Checking ${mdFiles.length} markdown files for broken links...`);
+console.log(`🔍 Checking ${mdFiles.length} markdown files for broken links...\n`);
 
 mdFiles.forEach(file => {
   try {
-    // Run in quiet mode with JSON output
-    const result = execSync(`npx markdown-link-check --quiet --json "${file}"`).toString();
+    // Run markdown-link-check quietly
+    const result = execSync(`npx markdown-link-check --quiet "${file}"`, { 
+      encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
     
-    try {
-      const linkCheckResult = JSON.parse(result);
-      const fileErrors = linkCheckResult.filter(item => item.status === 'dead');
+    console.log(`✅ ${file}`);
+  } catch (error) {
+    // markdown-link-check returns non-zero exit code for broken links
+    if (error.stdout) {
+      const lines = error.stdout.split('\n').filter(line => line.trim());
+      const errors = lines.filter(line => line.includes('✖') || line.includes('ERROR'));
       
-      if (fileErrors.length > 0) {
-        console.log(`\n❌ ${file}: ${fileErrors.length} broken links`);
-        errorCount += fileErrors.length;
+      if (errors.length > 0) {
+        console.log(`❌ ${file}: ${errors.length} broken links`);
+        totalErrors += errors.length;
         
-        fileErrors.forEach(error => {
-          const brokenLink = {
-            file,
-            link: error.link,
-            statusCode: error.statusCode
-          };
-          brokenLinks.push(brokenLink);
-          console.log(`   - ${error.link} (${error.statusCode})`);
+        errors.forEach(error => {
+          const cleaned = error.replace(/^\s*✖\s*/, '').replace(/^\s*ERROR:\s*/, '');
+          console.log(`   • ${cleaned}`);
+          brokenLinks.push({ file, link: cleaned });
         });
+        console.log('');
       } else {
-        console.log(`✓ ${file}`);
+        console.log(`✅ ${file}`);
       }
-    } catch (parseError) {
-      console.log(`⚠️ ${file}: Could not parse results`);
+    } else {
+      console.log(`⚠️  ${file}: Check failed`);
     }
-  } catch (e) {
-    console.error(`⚠️ Error checking ${file}`);
   }
 });
 
-// Generate report
-if (brokenLinks.length > 0) {
+// Generate summary
+console.log('\n' + '═'.repeat(60));
+if (totalErrors > 0) {
+  console.log(`❌ Link check complete: Found ${totalErrors} broken links in ${mdFiles.length} files`);
+  
+  // Save detailed report
   const report = {
     timestamp: new Date().toISOString(),
     totalFiles: mdFiles.length,
-    totalBrokenLinks: errorCount,
+    totalBrokenLinks: totalErrors,
     brokenLinks
   };
   
   writeFileSync('broken-links-report.json', JSON.stringify(report, null, 2));
-  console.log(`\n❌ Link check complete. Found ${errorCount} broken links in ${brokenLinks.length} files.`);
-  console.log(`Report saved to broken-links-report.json`);
+  console.log(`📄 Detailed report saved to: broken-links-report.json`);
+  process.exit(1);
 } else {
-  console.log(`\n✅ Link check complete. No broken links found in ${mdFiles.length} files.`);
+  console.log(`✅ All links valid! Checked ${mdFiles.length} files successfully`);
+  process.exit(0);
 }
-
-process.exit(errorCount > 0 ? 1 : 0);

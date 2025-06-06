@@ -15,11 +15,9 @@ alwaysApply: true
 - Use snake_case for variables and functions
 - Avoid classes and Typescript
 - Use UPPER_SNAKE_CASE for constants
-- Prefer const over let, avoid var
-- Use arrow functions for anonymous functions
+- Use arrow notation for functions
 
 ## File Organization
 - Group related files in directories
-- Use index files to export components
 - Keep test files close to the code they test
 
