@@ -1,6 +1,6 @@
 # Documentation & Strategy Hub
 
-**Comprehensive research methodology and strategic analysis framework for GitHub repository management and project documentation**
+**Comprehensive research methodology and strategic analysis framework for GitHub public repository management and project documentation**
 
 > **🔒 Privacy First**: This framework protects your personal data. See [Setup & Privacy](#setup--privacy) for secure configuration.
 >
