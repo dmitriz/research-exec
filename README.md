@@ -13,9 +13,12 @@
 ### Secure Configuration
 This framework is designed with **privacy by default**:
 
-1. **Personal data stays local**: Your GitHub username and repository data never get committed
-2. **Example data provided**: Anonymized sample data for testing and documentation
-3. **Gitignored sensitive files**: `config.js`, `data/`, and generated analysis files are automatically excluded
+1. **Private repositories excluded**: Only public repositories are analyzed - private repositories are automatically excluded from all data collection and analysis
+2. **Personal configuration protected**: API keys, tokens, and local configuration files are gitignored and never committed
+3. **Example data provided**: Anonymized sample data for testing and documentation
+
+**What's analyzed**: Public repositories only (names, descriptions, languages, activity)  
+**What's excluded**: Private repositories, API keys, personal configuration files
 
 ### Quick Setup
 ```bash
@@ -33,7 +36,7 @@ npm run setup
 npm run data:analyze
 ```
 
-All personal data remains on your machine and is never committed to the repository.
+All personal configuration and private repository data is excluded from analysis and never committed to the repository.
 
 ## Research Infrastructure & Scope
 
